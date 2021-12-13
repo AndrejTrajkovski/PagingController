@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "PagingController",
+        "repositoryURL": "https://github.com/AndrejTrajkovski/PagingController",
+        "state": {
+          "branch": "main",
+          "revision": "ba1215530eeda00df967036d398848e0184e0be0",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}
