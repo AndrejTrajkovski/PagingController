@@ -15,19 +15,12 @@ protocol APIOffsetLoaderDataSource: AnyObject {
 
 class APIOffsetLoader<T: PagingItem> {
 
-    enum PagingStrategy {
-        case equalToZero
-        case lessThanLimit
-    }
-
     var offset: Int = 0
     let queryLimit: Int
-    let strategy: PagingStrategy
 
-    init(sectionIndex: Int, queryLimit: Int, strategy: PagingStrategy) {
+    init(sectionIndex: Int, queryLimit: Int) {
         self.sectionIndex = sectionIndex
         self.queryLimit = queryLimit
-        self.strategy = strategy
     }
 
     var sectionIndex: Int
@@ -66,7 +59,7 @@ class APIOffsetLoader<T: PagingItem> {
         switch result {
         case .success(let items):
             delegate.didLoadNew(items: items, range: range, sectionIndex: sectionIndex)
-            if shouldLoadNewPage(items.count) {
+            if items.count < queryLimit {
                 shouldLoadNewPage = false
             } else if delegate.shouldLoadNewItems(sectionIndex: sectionIndex) {
                 fetchNextPage()
@@ -74,15 +67,6 @@ class APIOffsetLoader<T: PagingItem> {
         case .failure(let error):
             delegate.didGet(error: error, in: range, sectionIndex: sectionIndex)
             fetchNextPage()
-        }
-    }
-
-    private func shouldLoadNewPage(_ count: Int) -> Bool {
-        switch strategy {
-        case .equalToZero:
-            return count == 0
-        case .lessThanLimit:
-            return count < queryLimit
         }
     }
 }
