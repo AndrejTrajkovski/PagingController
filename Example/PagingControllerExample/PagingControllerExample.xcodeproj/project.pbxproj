@@ -14,6 +14,9 @@
 		82C957ED2766C3FF0024C1C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 82C957EC2766C3FF0024C1C9 /* Assets.xcassets */; };
 		82C957F02766C3FF0024C1C9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82C957EE2766C3FF0024C1C9 /* LaunchScreen.storyboard */; };
 		82C957FB2766C48E0024C1C9 /* PagingController in Frameworks */ = {isa = PBXBuildFile; productRef = 82C957FA2766C48E0024C1C9 /* PagingController */; };
+		82C95805276828A60024C1C9 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C95804276828A60024C1C9 /* Video.swift */; };
+		82C95807276828B20024C1C9 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C95806276828B20024C1C9 /* Channel.swift */; };
+		82C9580927682A3E0024C1C9 /* Debounce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C9580827682A3E0024C1C9 /* Debounce.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +29,9 @@
 		82C957EF2766C3FF0024C1C9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		82C957F12766C3FF0024C1C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		82C957FF2766C7070024C1C9 /* PagingController */ = {isa = PBXFileReference; lastKnownFileType = folder; name = PagingController; path = ../..; sourceTree = "<group>"; };
+		82C95804276828A60024C1C9 /* Video.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
+		82C95806276828B20024C1C9 /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
+		82C9580827682A3E0024C1C9 /* Debounce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Debounce.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,10 +69,13 @@
 				82C957E32766C3FE0024C1C9 /* AppDelegate.swift */,
 				82C957E52766C3FE0024C1C9 /* SceneDelegate.swift */,
 				82C957E72766C3FE0024C1C9 /* ViewController.swift */,
+				82C9580827682A3E0024C1C9 /* Debounce.swift */,
 				82C957E92766C3FE0024C1C9 /* Main.storyboard */,
 				82C957EC2766C3FF0024C1C9 /* Assets.xcassets */,
 				82C957EE2766C3FF0024C1C9 /* LaunchScreen.storyboard */,
 				82C957F12766C3FF0024C1C9 /* Info.plist */,
+				82C95804276828A60024C1C9 /* Video.swift */,
+				82C95806276828B20024C1C9 /* Channel.swift */,
 			);
 			path = PagingControllerExample;
 			sourceTree = "<group>";
@@ -149,7 +158,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				82C957E82766C3FE0024C1C9 /* ViewController.swift in Sources */,
+				82C95807276828B20024C1C9 /* Channel.swift in Sources */,
+				82C95805276828A60024C1C9 /* Video.swift in Sources */,
 				82C957E42766C3FE0024C1C9 /* AppDelegate.swift in Sources */,
+				82C9580927682A3E0024C1C9 /* Debounce.swift in Sources */,
 				82C957E62766C3FE0024C1C9 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

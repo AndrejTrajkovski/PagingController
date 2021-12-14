@@ -1,11 +1,11 @@
-enum LoadingState<T> {
+public enum LoadingState<T> {
     case initial
     case loading
     case loaded(T)
     case error(Error)
 }
 
-extension LoadingState {
+public extension LoadingState {
 
     func map<U>(_ transform:((T) -> U)) -> LoadingState<U> {
         switch self {

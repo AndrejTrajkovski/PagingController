@@ -1,12 +1,12 @@
 import UIKit
 
-class PagingController: UIViewController, APIOffsetLoaderDelegate, APIOffsetLoaderDataSource {
+open class PagingController: UIViewController, APIOffsetLoaderDelegate, APIOffsetLoaderDataSource {
 
-    func numberOfItems(sectionIndex: Int) -> Int {
+    public func numberOfItems(sectionIndex: Int) -> Int {
         itemsPerSection[sectionIndex]!.count
     }
 
-    func isNotLoadingItems(sectionIndex: Int) -> Bool {
+    public func isNotLoadingItems(sectionIndex: Int) -> Bool {
         itemsPerSection[sectionIndex]!.allSatisfy({
             switch $0 {
             case .loaded, .initial, .error:
@@ -17,14 +17,14 @@ class PagingController: UIViewController, APIOffsetLoaderDelegate, APIOffsetLoad
         })
     }
 
-    var itemsPerSection: [Int: [LoadingState<AnyPagingItem>]] = [:]
-    var collectionView: UICollectionView!
+    public var itemsPerSection: [Int: [LoadingState<AnyPagingItem>]] = [:]
+    public var collectionView: UICollectionView!
 
-    func getItems(sectionIndex: Int, offset: Int, completion: @escaping (Result<[AnyPagingItem], Error>) -> Void) {
+    open func getItems(sectionIndex: Int, offset: Int, completion: @escaping (Result<[AnyPagingItem], Error>) -> Void) {
         //override
     }
 
-    func willLoadNewItems(in range: Range<Int>, sectionIndex: Int) {
+    open func willLoadNewItems(in range: Range<Int>, sectionIndex: Int) {
         range.forEach { itemsPerSection[sectionIndex]!.insert(.loading, at: $0) }
         collectionView.performBatchUpdates {
             self.collectionView.insertItems(at: self.indexPaths(range, sectionIndex: sectionIndex))
@@ -33,25 +33,25 @@ class PagingController: UIViewController, APIOffsetLoaderDelegate, APIOffsetLoad
         }
     }
 
-    func willLoadItems(in range: Range<Int>, sectionIndex: Int) {
+    open func willLoadItems(in range: Range<Int>, sectionIndex: Int) {
         range.forEach { itemsPerSection[sectionIndex]![$0] = .loading }
         collectionView.reloadSections(IndexSet.init(integer: sectionIndex))
     }
 
-    func didGet(error: Error, in range: Range<Int>, sectionIndex: Int) {
+    open func didGet(error: Error, in range: Range<Int>, sectionIndex: Int) {
         range.forEach { itemsPerSection[sectionIndex]![$0] = .error(error) }
         collectionView.reloadSections(IndexSet.init(integer: sectionIndex))
     }
 
-    func didLoadNew(items: [AnyPagingItem], range: Range<Int>, sectionIndex: Int) {
+    open func didLoadNew(items: [AnyPagingItem], range: Range<Int>, sectionIndex: Int) {
         reloadAndDeleteCells(items, range, sectionIndex: sectionIndex)
     }
 
-    func shouldHandleResult(sectionIndex: Int) -> Bool {
+    open func shouldHandleResult(sectionIndex: Int) -> Bool {
         return true
     }
 
-    func shouldLoadNewItems(sectionIndex: Int) -> Bool {
+    open func shouldLoadNewItems(sectionIndex: Int) -> Bool {
         return isScrolledToBottom()
     }
 

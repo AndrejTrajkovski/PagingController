@@ -1,4 +1,4 @@
-protocol APIOffsetLoaderDelegate: AnyObject {
+public protocol APIOffsetLoaderDelegate: AnyObject {
     func willLoadNewItems(in range: Range<Int>, sectionIndex: Int)
     func willLoadItems(in range: Range<Int>, sectionIndex: Int)
     func didGet(error: Error, in range: Range<Int>, sectionIndex: Int)
@@ -8,32 +8,32 @@ protocol APIOffsetLoaderDelegate: AnyObject {
     func getItems(sectionIndex: Int, offset: Int, completion: @escaping (Result<[AnyPagingItem], Error>) -> Void)
 }
 
-protocol APIOffsetLoaderDataSource: AnyObject {
+public protocol APIOffsetLoaderDataSource: AnyObject {
     func numberOfItems(sectionIndex: Int) -> Int
     func isNotLoadingItems(sectionIndex: Int) -> Bool
 }
 
-class APIOffsetLoader<T: PagingItem> {
+public class APIOffsetLoader<T: PagingItem> {
 
     var offset: Int = 0
     let queryLimit: Int
 
-    init(sectionIndex: Int, queryLimit: Int) {
+    public init(sectionIndex: Int, queryLimit: Int) {
         self.sectionIndex = sectionIndex
         self.queryLimit = queryLimit
     }
 
     var sectionIndex: Int
     private var shouldLoadNewPage = true
-    weak var delegate: APIOffsetLoaderDelegate?
-    weak var dataSource: APIOffsetLoaderDataSource?
+    public weak var delegate: APIOffsetLoaderDelegate?
+    public weak var dataSource: APIOffsetLoaderDataSource?
 
-    func reset() {
+    public func reset() {
         shouldLoadNewPage = true
         offset = 0
     }
 
-    func fetchNextPage() {
+    public func fetchNextPage() {
 
         guard let dataSource = dataSource,
               dataSource.isNotLoadingItems(sectionIndex: sectionIndex),
